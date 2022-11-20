@@ -3,10 +3,17 @@
 
 public class Solution extends VersionControl {
     public int firstBadVersion(int n) {
-        while(isBadVersion(n)) {
-            n = n -1;
-        }   
-        // when we got out of the while loop, the version is good. That is why we are increasing the value of n.
-        return n+1;
+        int low = 1;
+        int high= n;
+        while(low<high){
+            int middle = low + (high-low)/2;
+            if(isBadVersion(middle)){
+                high = middle;
+            }
+            else{
+                low = middle + 1;
+            }
+        }
+        return low;
     }
 }
