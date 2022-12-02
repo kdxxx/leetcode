@@ -1,32 +1,26 @@
 class Solution {
+    private int N = 26;
     public boolean closeStrings(String word1, String word2) {
-        if(word1.length() != word2.length()){
-            return false;
-        }
-
-        int n = word1.length();
-        int[] count1 = new int[26];
-        int[] count2 = new int[26];
-
-        for(int i=0;i<0;i++){
-            count1[word1.charAt(i) -'a']++;
-            count2[word2.charAt(i) -'a']++;
-        }
-
-        for(int i=0; i<26;i++){
-            if(count1[i]==0 && count2[i] !=0){
-                return false;
+		// count the English letters
+        int[] arr1 = new int[N], arr2 = new int[N];
+        for (char ch : word1.toCharArray())
+            arr1[ch - 'a']++;
+        for (char ch : word2.toCharArray())
+            arr2[ch - 'a']++;
+		
+		// if one has a letter which another one doesn't have, dont exist
+        for (int i = 0; i < N; i++) {
+            if (arr1[i] == arr2[i]) {
+                continue;
             }
-            if(count1[i]!=0 && count2[i] ==0){
+            if (arr1[i] == 0 || arr2[i] == 0) {
                 return false;
             }
         }
-
-        Arrays.sort(count1);
-        Arrays.sort(count2);
-        
-        for(int i=0;i<26; i++){
-            if(count1[i] != count2[i]){
+        Arrays.sort(arr1);
+        Arrays.sort(arr2);
+        for (int i = 0; i < N; i++) {
+            if (arr1[i] != arr2[i]) {
                 return false;
             }
         }
