@@ -1,5 +1,11 @@
 DVD[] dvdCollection = new DVD[15];
 
+DVD avengerDVD = new DVD("the avengers", 2012,"Joss Whedon");
+dvdCollection[7]= avengerDVD;
+
+System.out.println(dvdCollection[7]);
+
+
 public class DVD{
   public String name;
   public int releaseYear;
